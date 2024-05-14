@@ -20,7 +20,7 @@ public class SendMessageBotServiceImpl implements SendMessageBotService {
         sendMessage.setText(message);
 
         try {
-            taskManagerTelegramBot.execute(sendMessage)
+            taskManagerTelegramBot.execute(sendMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
