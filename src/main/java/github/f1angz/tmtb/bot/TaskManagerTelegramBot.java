@@ -1,13 +1,14 @@
 package github.f1angz.tmtb.bot;
 
 
+import github.f1angz.tmtb.command.Command;
 import github.f1angz.tmtb.util.PropertiesUtil;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class TaskManagerTelegramBot extends TelegramLongPollingBot {
+public class TaskManagerTelegramBot extends TelegramLongPollingBot implements Command {
 
     private final String BOT_USERNAME = "bot.username";
     private final String BOT_TOKEN = "bot.token";
@@ -39,5 +40,10 @@ public class TaskManagerTelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         return PropertiesUtil.get(BOT_TOKEN);
+    }
+
+    @Override
+    public void execute(Update update) {
+        
     }
 }
