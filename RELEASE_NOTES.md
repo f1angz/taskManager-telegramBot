@@ -4,3 +4,7 @@
 
 * Project structure created
 * Added a simple telegram bot
+
+## 0.2.0 - SNAPSHOT
+
+* Implemented Command pattern for handling Telegram Bot commands
