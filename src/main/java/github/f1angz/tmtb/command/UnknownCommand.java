@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class UnknownCommand implements Command {
 
-    private static final String UNKNOWN_MESSAGE = "Упс! Не понимаю данную команду. Попробуйте снова.";
+    public static final String UNKNOWN_MESSAGE = "Упс! Не понимаю данную команду. Попробуйте снова.";
 
     private final SendMessageBotService sendMessageBotService;
 
