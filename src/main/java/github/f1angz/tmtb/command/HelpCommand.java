@@ -9,11 +9,13 @@ public class HelpCommand implements Command {
 
     private final SendMessageBotService sendMessageBotService;
 
-    public static final String HELP_MESSAGE = String.format("<b>Доступные команды:<b>\n\n"
+    public static final String HELP_MESSAGE = String.format("Доступные команды:\n\n"
                                                             + "%s - запустить бота\n"
                                                             + "%s - приостановить работу бота\n"
+                                                            + "%s - добавить задачу\n"
+                                                            + "%s - посмотреть список всех задач\n"
                                                             + "%s - получить помощь по работе с ботом\n",
-                                                            START.getCommandName(), STOP.getCommandName(), HELP.getCommandName());
+                                                            START.getCommandName(), STOP.getCommandName(), ADD.getCommandName(), SHOW.getCommandName(), HELP.getCommandName());
 
     public HelpCommand(SendMessageBotService sendMessageBotService) {
         this.sendMessageBotService = sendMessageBotService;
