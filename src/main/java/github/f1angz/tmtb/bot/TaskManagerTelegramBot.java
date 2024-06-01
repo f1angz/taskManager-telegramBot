@@ -2,34 +2,41 @@ package github.f1angz.tmtb.bot;
 
 
 import github.f1angz.tmtb.command.Command;
+import github.f1angz.tmtb.command.CommandContainer;
+import github.f1angz.tmtb.service.SendMessageBotServiceImpl;
+import github.f1angz.tmtb.service.TaskService;
+import github.f1angz.tmtb.service.TelegramUserService;
+import github.f1angz.tmtb.service.TelegramUserServiceImpl;
 import github.f1angz.tmtb.util.PropertiesUtil;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import static github.f1angz.tmtb.command.CommandName.NO;
 
 public class TaskManagerTelegramBot extends TelegramLongPollingBot implements Command {
 
     private final String BOT_USERNAME = "bot.username";
     private final String BOT_TOKEN = "bot.token";
+    public static String COMMAND_PREFIX = "/";
+    private final CommandContainer commandContainer;
+
+    public TaskManagerTelegramBot(TelegramUserService telegramUserService, TaskService taskService) {
+        this.commandContainer = new CommandContainer(new SendMessageBotServiceImpl(this), telegramUserService, taskService);
+    }
+
 
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.hasMessage() && update.getMessage().hasText()) {
+        if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText().trim();
-            String chatId = update.getMessage().getChatId().toString();
+            if (message.startsWith(COMMAND_PREFIX)) {
+                String commandIdentifier = message.split(" ")[0].toLowerCase();
 
-            SendMessage sm = new SendMessage();
-            sm.setChatId(chatId);
-            sm.setText(message);
-
-            try {
-                execute(sm);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
+                commandContainer.retrieveCommand(commandIdentifier).execute(update);
+            } else {
+                commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
             }
         }
-
     }
 
     @Override

@@ -3,16 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <!--Информация о проекте-->
     <groupId>github.f1angz.tmtb</groupId>
     <artifactId>TaskManagerTelegramBot</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
+    <!--Название проекта-->
     <name>Task Manager Telegram Bot</name>
 
     <url>https://github.com/f1angz/taskManager-telegramBot</url>
-
+    <!--Версии библиотек-->
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -22,7 +22,7 @@
         <org.mockito.version>5.11.0</org.mockito.version>
         <org.telegram.version>6.8.0</org.telegram.version>
     </properties>
-
+    <!--Подключение библиотек-->
     <dependencies>
         <dependency>
             <groupId>org.telegram</groupId>
